@@ -31,6 +31,7 @@ namespace communication
         /* Variable used to count the number of messages sent */
         private uint sequenceNumber = 0;
         public GameObject cube;
+        public GameObject Text;
         /* Robot cartesian position and rotation values */
         double x, y, z, rx, ry, rz;
         double xc, yc, zc;
@@ -54,7 +55,7 @@ namespace communication
             /* Initializes EGM connection with robot */
             //CreateConnection();
             startcom();
-
+            
 
         }
 
@@ -75,6 +76,8 @@ namespace communication
 
         public void startcom()
         {
+            Debug.Log("Connecting");
+            
             server = new UdpClient(port);
             
             robotAddress = new IPEndPoint(0, port);
@@ -90,8 +93,8 @@ namespace communication
             try
             {
                 bytes = server.Receive(ref robotAddress);
-                Debug.Log(bytes);
-                Debug.Log("TEST");
+                Text.SetActive(false);
+                Debug.Log("Connected");
             }
             catch (SocketException e){
                 Debug.Log(e);
