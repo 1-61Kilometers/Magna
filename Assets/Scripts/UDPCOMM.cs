@@ -69,7 +69,6 @@ namespace communication
         
             //Updates EGMState
             //egmStateText.text = "EGM State: " + egmState;
-            //Debug.Log("Hello");
         }
 
 
@@ -78,7 +77,7 @@ namespace communication
         {
             server = new UdpClient(port);
             
-            robotAddress = new IPEndPoint(IPAddress.Parse("192.168.125.1"), port);
+            robotAddress = new IPEndPoint(0, port);
             
             UpdateValues();
         }
@@ -91,6 +90,8 @@ namespace communication
             try
             {
                 bytes = server.Receive(ref robotAddress);
+                Debug.Log(bytes);
+                Debug.Log("TEST");
             }
             catch (SocketException e){
                 Debug.Log(e);
@@ -198,7 +199,6 @@ namespace communication
             
         }
         public void cubeMove(double xx, double yy, double zz, double rrx, double rry, double rrz)
-
         /*
 
         Summary: Retrieves x,y, and z data of cube location, and transcribes this information into coordinates to send
@@ -213,10 +213,7 @@ namespace communication
             - zz: Z rotational position of cube
 
         */
-
         {
-            
-
             y = (xx * 1000) + yc;//yC + deviation;
             x = (zz * 1000) + xc;//xC;
             z = (yy * 1000) + zc;//zC;

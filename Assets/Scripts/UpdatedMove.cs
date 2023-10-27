@@ -23,12 +23,11 @@ public class UpdatedMove : MonoBehaviour
     private float sety;
     private float setz;
     private int currentAnimationIndex = 0;
-    float time = 0;
+    private float time = 0;
 
     void Start()
     {
-        //move idel on start 
-        //ReadString();
+        ReadString();
         Transstart = cube.transform.position;
         Anglestart = cube.transform.eulerAngles;
     }
@@ -80,40 +79,18 @@ public class UpdatedMove : MonoBehaviour
             }
     }
 
+    void Update()
+    {
+    }
 
     public void SetNextAnimation()
     {
-        //currentAnimationIndex = (currentAnimationIndex + 1) % animations.Length;
-        
-        //move between idle animations
-        currentAnimationIndex = (currentAnimationIndex + 1) % 2;
-        //ReadString();
+        currentAnimationIndex = (currentAnimationIndex + 1) % animations.Length;
+        ReadString();
         ResetAnimation();
     }
 
-    private void findNearestCoord(){
-        float minDist = Mathf.Infinity;
-        Vector3 currLinePos = transform.position, currLineAng = transform.eulerAngles;
-        int minIndex = 0;
-        for (int i = 0; i < lines.Count; i++){
-            string line = lines[i];
-            currLinePos.x = float.Parse(line.Split(",")[0]);
-            currLinePos.y = float.Parse(line.Split(",")[1]);
-            currLinePos.z = float.Parse(line.Split(",")[2]);
-
-            currLineAng.x = float.Parse(line.Split(",")[3]);
-            currLineAng.y = float.Parse(line.Split(",")[4]);
-            currLineAng.z = float.Parse(line.Split(",")[5]);
-            float newDist = Vector3.Distance(currLinePos, transform.position) + Vector3.Distance(currLineAng, transform.eulerAngles);
-            if (minDist > newDist){
-                minDist = newDist;
-                minIndex = i;
-            }
-        }
-        count = minIndex;
-    }
-
-    /* public void SetPreviousAnimation()
+    public void SetPreviousAnimation()
     {
         currentAnimationIndex = currentAnimationIndex - 1;
         if (currentAnimationIndex < 0)
@@ -122,7 +99,7 @@ public class UpdatedMove : MonoBehaviour
         }
         ReadString();
         ResetAnimation();
-    } */
+    }
 
     public void Pause()
     {
@@ -134,7 +111,7 @@ public class UpdatedMove : MonoBehaviour
         pause = false;
     }
 
-    /* private void ReadString()
+    private void ReadString()
     {
         lines = new List<string>();
         TextAsset currentAnimation = animations[currentAnimationIndex];
@@ -153,9 +130,11 @@ public class UpdatedMove : MonoBehaviour
                 }
 
             }
-        } 
+        }
         UnityEngine.Debug.Log(lines[1]);
-    } */
+
+
+    }
 
     private void ResetAnimation()
     {
