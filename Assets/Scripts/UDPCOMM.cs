@@ -78,10 +78,10 @@ namespace communication
         {
             Debug.Log("Connecting");
             
-            server = new UdpClient(port);
-            
-            robotAddress = new IPEndPoint(0, port);
-            
+            server = new UdpClient(6511);
+            Debug.Log("SERVERCREATED");
+            robotAddress = new IPEndPoint(IPAddress.Parse("192.168.125.1"), port);
+
             UpdateValues();
         }
 
