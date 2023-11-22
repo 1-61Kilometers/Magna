@@ -1,4 +1,4 @@
-# Using Unity to define joints position in ABB robots
+# Using Unity to play animations programmed by mixed reality interface
 _Last update: 10/26/2023_
 
 ### :warning: Warning 
